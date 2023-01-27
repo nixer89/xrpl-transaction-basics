@@ -1,0 +1,26 @@
+{
+  "name": "xrpl-transaction-basics",
+  "version": "1.0.0",
+  "description": "xrpl basic transactions",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nixer89/xrpl-transaction-basics.git"
+  },
+  "author": "Daniel Siedentopf",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nixer89/xrpl-transaction-basics/issues"
+  },
+  "homepage": "https://github.com/nixer89/xrpl-transaction-basics#readme",
+  "devDependencies": {
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "xrpl": "^2.8.0-beta.0"
+  }
+}
