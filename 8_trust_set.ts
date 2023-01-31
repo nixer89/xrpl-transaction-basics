@@ -1,10 +1,10 @@
 import { Wallet, Client, AccountSet, AccountSetAsfFlags, TrustSet, TrustSetFlags } from 'xrpl';
-import { WALLET_SEED_1, WALLET_SEED_2 } from './0_config'
+import { ISSUER_WALLET_SEED, USER_1_SEED } from './0_config'
 
 async function setTrustLine() {
 
-    let wallet = Wallet.fromSecret(WALLET_SEED_1);
-    let wallet2 = Wallet.fromSecret(WALLET_SEED_2);
+    let wallet = Wallet.fromSecret(ISSUER_WALLET_SEED);
+    let wallet2 = Wallet.fromSecret(USER_1_SEED);
 
     //console.log(wallet);
 

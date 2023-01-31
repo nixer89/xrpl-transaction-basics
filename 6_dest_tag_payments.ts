@@ -1,11 +1,11 @@
 import { Wallet, Client, Payment, xrpToDrops } from 'xrpl';
-import { WALLET_SEED_1, WALLET_SEED_2 } from './0_config'
+import { ISSUER_WALLET_SEED, USER_1_SEED } from './0_config'
 
 async function fundViaPayment() {
 
-    let wallet_with_xrp = Wallet.fromSeed(WALLET_SEED_1);
+    let wallet_with_xrp = Wallet.fromSeed(ISSUER_WALLET_SEED);
 
-    let wallet_no_xrp = Wallet.fromSecret(WALLET_SEED_2);
+    let wallet_no_xrp = Wallet.fromSecret(USER_1_SEED);
 
     //console.log(wallet);
     //console.log(wallet2);

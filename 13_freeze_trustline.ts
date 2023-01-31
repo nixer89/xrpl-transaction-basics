@@ -14,16 +14,16 @@ async function setTrustLine() {
 
     let trustSetTransaction:TrustSet = {
         TransactionType: "TrustSet",
-        Account: user_wallet.classicAddress,
-        Flags: TrustSetFlags.tfSetNoRipple,
+        Account: issuer_wallet.classicAddress,
+        Flags: TrustSetFlags.tfSetFreeze,
         LimitAmount: {
-            issuer: issuer_wallet.classicAddress,
+            issuer: user_wallet.classicAddress,
             currency: "AAA",
-            value: "100000"
+            value: "0"
         }
     }
 
-    let trustSetResponse = await client.submitAndWait(trustSetTransaction, {autofill: true, wallet: user_wallet});
+    let trustSetResponse = await client.submitAndWait(trustSetTransaction, {autofill: true, wallet: issuer_wallet});
 
     console.log(trustSetResponse);
 

@@ -1,9 +1,9 @@
 import { Wallet, Client, AccountSet, AccountSetAsfFlags } from 'xrpl';
-import { WALLET_SEED_1 } from './0_config'
+import { ISSUER_WALLET_SEED } from './0_config'
 
 async function setDefaultRipple() {
 
-    let wallet = Wallet.fromSecret(WALLET_SEED_1);
+    let wallet = Wallet.fromSecret(ISSUER_WALLET_SEED);
 
     console.log(wallet);
 
