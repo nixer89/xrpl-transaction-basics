@@ -1,9 +1,9 @@
 import { Wallet, Client, AccountSet, AccountSetAsfFlags, TrustSet, TrustSetFlags } from 'xrpl';
-import { ISSUER_WALLET_SEED, USER_1_SEED } from './0_config'
+import { ISSUER_WALLET_1_CURRENCY, ISSUER_WALLET_1_SEED, ISSUER_WALLET_2_SEED, USER_1_SEED } from './0_config'
 
 async function setTrustLine() {
 
-    let issuer_wallet = Wallet.fromSecret(ISSUER_WALLET_SEED);
+    let issuer_wallet = Wallet.fromSecret(ISSUER_WALLET_1_SEED);
     let user_wallet = Wallet.fromSecret(USER_1_SEED);
 
     //console.log(wallet);
@@ -18,12 +18,12 @@ async function setTrustLine() {
         Flags: TrustSetFlags.tfSetNoRipple,
         LimitAmount: {
             issuer: issuer_wallet.classicAddress,
-            currency: "AAA",
-            value: "100000"
+            currency: ISSUER_WALLET_1_CURRENCY,
+            value: "1000000"
         }
     }
 
-    let trustSetResponse = await client.submitAndWait(trustSetTransaction, {autofill: true, wallet: user_wallet});
+    let trustSetResponse = await client.submit(trustSetTransaction, {autofill: true, wallet: user_wallet});
 
     console.log(trustSetResponse);
 

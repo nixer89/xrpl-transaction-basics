@@ -1,9 +1,9 @@
 import { Wallet, Client, AccountSet, AccountSetAsfFlags } from 'xrpl';
-import { ISSUER_WALLET_SEED } from './0_config'
+import { ISSUER_WALLET_1_SEED } from './0_config'
 
 async function setDefaultRipple() {
 
-    let issuer_wallet = Wallet.fromSecret(ISSUER_WALLET_SEED);
+    let issuer_wallet = Wallet.fromSecret(ISSUER_WALLET_1_SEED);
 
     console.log(issuer_wallet);
 
@@ -17,7 +17,7 @@ async function setDefaultRipple() {
         SetFlag: AccountSetAsfFlags.asfRequireAuth
     }
 
-    let accountSetResponse = await client.submitAndWait(accountSetTransaction, {autofill: true, wallet: issuer_wallet});
+    let accountSetResponse = await client.submit(accountSetTransaction, {autofill: true, wallet: issuer_wallet});
 
     console.log(accountSetResponse);
 

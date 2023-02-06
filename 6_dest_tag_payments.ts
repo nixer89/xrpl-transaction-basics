@@ -1,11 +1,11 @@
 import { Wallet, Client, Payment, xrpToDrops } from 'xrpl';
-import { ISSUER_WALLET_SEED, OPERATIONAL_WALLET_SEED } from './0_config'
+import { ISSUER_WALLET_1_SEED, OPERATIONAL_WALLET_1_SEED } from './0_config'
 
 async function fundViaPayment() {
 
-    let wallet_with_xrp = Wallet.fromSeed(ISSUER_WALLET_SEED);
+    let issuer_wallet = Wallet.fromSeed(ISSUER_WALLET_1_SEED);
 
-    let wallet_no_xrp = Wallet.fromSecret(OPERATIONAL_WALLET_SEED);
+    let wallet_no_xrp = Wallet.fromSecret(OPERATIONAL_WALLET_1_SEED);
 
     //console.log(wallet);
     //console.log(wallet2);
@@ -18,14 +18,14 @@ async function fundViaPayment() {
 
     let payment:Payment = {
         TransactionType: "Payment",
-        Account: wallet_with_xrp.classicAddress,
+        Account: issuer_wallet.classicAddress,
         Destination: wallet_no_xrp.classicAddress,
         DestinationTag: 123,
         Amount: xrpToDrops(1),
         
     }
 
-    let paymentResponse = await client.submit(payment, {autofill: true, wallet: wallet_with_xrp});
+    let paymentResponse = await client.submit(payment, {autofill: true, wallet: issuer_wallet});
 
     console.log(paymentResponse);
 }

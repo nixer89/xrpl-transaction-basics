@@ -1,9 +1,9 @@
 import { Wallet, Client, AccountSet, AccountSetAsfFlags, decimalToTransferRate } from 'xrpl';
-import { ISSUER_WALLET_SEED, OPERATIONAL_WALLET_SEED } from './0_config'
+import { ISSUER_WALLET_1_SEED, OPERATIONAL_WALLET_1_SEED } from './0_config'
 
 async function setTransferRate() {
 
-    let wallet = Wallet.fromSecret(ISSUER_WALLET_SEED);
+    let wallet = Wallet.fromSecret(ISSUER_WALLET_1_SEED);
 
     console.log(wallet);
 
