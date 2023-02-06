@@ -5,7 +5,7 @@ async function setTrustLine() {
 
     let issuerWallet = Wallet.fromSecret(ISSUER_WALLET_SEED);
     let operationalWallet = Wallet.fromSecret(OPERATIONAL_WALLET_SEED);
-    let userWallet = Wallet.fromSecret(USER_1_SEED);
+    let user_wallet = Wallet.fromSecret(USER_1_SEED);
 
     //console.log(wallet);
 
@@ -15,16 +15,16 @@ async function setTrustLine() {
 
     let trustSetTransaction:TrustSet = {
         TransactionType: "TrustSet",
-        Account: userWallet.classicAddress,
-        Flags: TrustSetFlags.tfSetNoRipple,
+        Account: issuerWallet.classicAddress,
+        Flags: TrustSetFlags.tfSetfAuth,
         LimitAmount: {
-            issuer: issuerWallet.classicAddress,
+            issuer: user_wallet.classicAddress,
             currency: "BBB",
-            value: "100000"
+            value: "0"
         }
     }
 
-    let trustSetResponse = await client.submit(trustSetTransaction, {autofill: true, wallet: userWallet});
+    let trustSetResponse = await client.submit(trustSetTransaction, {autofill: true, wallet: issuerWallet});
 
     console.log(trustSetResponse);
 

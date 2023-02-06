@@ -1,7 +1,7 @@
-import { Wallet, Client, AccountSet, AccountSetAsfFlags, convertStringToHex } from 'xrpl';
+import { Wallet, Client, AccountSet, AccountSetAsfFlags, decimalToTransferRate } from 'xrpl';
 import { ISSUER_WALLET_SEED, OPERATIONAL_WALLET_SEED } from './0_config'
 
-async function setDestinationTag() {
+async function setTransferRate() {
 
     let wallet = Wallet.fromSecret(ISSUER_WALLET_SEED);
 
@@ -14,7 +14,8 @@ async function setDestinationTag() {
     let accountSetTransaction:AccountSet = {
         TransactionType: "AccountSet",
         Account: wallet.classicAddress,
-        SetFlag: AccountSetAsfFlags.asfRequireDest
+        //SetFlag: AccountSetAsfFlags.asfRequireDest,
+        TransferRate: decimalToTransferRate("0.1")
     }
 
     let accountSetResponse = await client.submitAndWait(accountSetTransaction, {autofill: true, wallet: wallet});
@@ -23,4 +24,4 @@ async function setDestinationTag() {
 
 }
 
-setDestinationTag();
+setTransferRate();

@@ -1,13 +1,13 @@
-import { Wallet, Client, Payment, xrpToDrops } from 'xrpl';
-import { ISSUER_WALLET_SEED, USER_1_SEED, USER_2_SEED } from './0_config'
+import { Wallet, Client, Payment, xrpToDrops, PaymentFlags } from 'xrpl';
+import { ISSUER_WALLET_SEED, OPERATIONAL_WALLET_SEED, USER_1_SEED } from './0_config'
 
 async function createCurrency() {
 
     let issuer_wallet = Wallet.fromSeed(ISSUER_WALLET_SEED);
 
-    let sender_wallet = Wallet.fromSecret(USER_1_SEED);
+    let operational_wallet = Wallet.fromSecret(OPERATIONAL_WALLET_SEED);
 
-    let user_wallet = Wallet.fromSecret(USER_2_SEED);
+    let user_wallet = Wallet.fromSecret(USER_1_SEED);
 
     let client = new Client("wss://s.altnet.rippletest.net/");
 
@@ -15,17 +15,17 @@ async function createCurrency() {
 
     let payment:Payment = {
         TransactionType: "Payment",
-        Account: sender_wallet.classicAddress,
+        Account: operational_wallet.classicAddress,
         Destination: user_wallet.classicAddress,
-        DestinationTag: 1234,
+        //Flags: PaymentFlags.tfPartialPayment,
         Amount: {
             issuer: issuer_wallet.classicAddress,
-            currency: "AAA",
-            value: "1234"
+            currency: "BBB",
+            value: "1000"
         }
     }
 
-    let paymentResponse = await client.submitAndWait(payment, {autofill: true, wallet: sender_wallet});
+    let paymentResponse = await client.submit(payment, {autofill: true, wallet: operational_wallet});
 
     console.log(paymentResponse);
 }
