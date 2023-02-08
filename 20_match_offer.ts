@@ -19,12 +19,12 @@ async function matchOffer() {
         TakerGets: {
             issuer: issuer_wallet_2.classicAddress,
             currency: ISSUER_WALLET_2_CURRENCY,
-            value: "10"
+            value: "100"
         },
         TakerPays: {
             issuer: issuer_wallet_1.classicAddress,
             currency: ISSUER_WALLET_1_CURRENCY,
-            value: "0.01"
+            value: "800"
         }
     }
 

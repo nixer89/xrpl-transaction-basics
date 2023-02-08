@@ -1,4 +1,4 @@
-import { Wallet, Client, AccountSet, AccountSetAsfFlags, convertStringToHex } from 'xrpl';
+import { Wallet, Client, AccountSet, AccountSetAsfFlags, convertStringToHex, AccountSetTfFlags } from 'xrpl';
 import { ISSUER_WALLET_1_SEED, OPERATIONAL_WALLET_1_SEED } from './0_config'
 
 async function setDestinationTag() {
@@ -14,7 +14,8 @@ async function setDestinationTag() {
     let accountSetTransaction:AccountSet = {
         TransactionType: "AccountSet",
         Account: wallet.classicAddress,
-        SetFlag: AccountSetAsfFlags.asfRequireDest
+        SetFlag: AccountSetAsfFlags.asfDefaultRipple,
+        Flags: AccountSetTfFlags.tfRequireDestTag
     }
 
     let accountSetResponse = await client.submit(accountSetTransaction, {autofill: true, wallet: wallet});

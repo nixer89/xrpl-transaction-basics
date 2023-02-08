@@ -1,4 +1,4 @@
-import { Wallet, Client, Payment, xrpToDrops, OfferCreate, OfferCreateFlags } from 'xrpl';
+import { Wallet, Client, Payment, xrpToDrops, OfferCreate, OfferCreateFlags, OfferCancel } from 'xrpl';
 import { ISSUER_WALLET_1_CURRENCY, ISSUER_WALLET_1_SEED, ISSUER_WALLET_2_CURRENCY, ISSUER_WALLET_2_SEED, OPERATIONAL_WALLET_1_SEED } from './0_config'
 
 async function fundViaPayment() {
@@ -12,20 +12,10 @@ async function fundViaPayment() {
 
     await client.connect();
 
-    let sellFromOperationalWallet:OfferCreate = {
-        TransactionType: "OfferCreate",
+    let sellFromOperationalWallet:OfferCancel = {
+        TransactionType: "OfferCancel",
         Account: operational_wallet_1.classicAddress,
-        Flags: OfferCreateFlags.tfSell,
-        TakerGets: {
-            issuer: issuer_wallet_1.classicAddress,
-            currency: ISSUER_WALLET_1_CURRENCY,
-            value: "100000"
-        },
-        TakerPays: {
-            issuer: issuer_wallet_2.classicAddress,
-            currency: ISSUER_WALLET_2_CURRENCY,
-            value: "10000"
-        }
+        OfferSequence: 35212853
     }
 
     let offerResponse = await client.submit(sellFromOperationalWallet, {autofill: true, wallet: operational_wallet_1});

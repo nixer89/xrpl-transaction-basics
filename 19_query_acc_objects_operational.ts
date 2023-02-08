@@ -3,7 +3,7 @@ import { ISSUER_WALLET_1_SEED, OPERATIONAL_WALLET_1_SEED, USER_1_SEED } from './
 
 async function getOffers() {
 
-    let operational_wallet = Wallet.fromSecret(OPERATIONAL_WALLET_1_SEED);
+    let wallet = Wallet.fromSecret(USER_1_SEED);
 
     let client = new Client("wss://testnet.xrpl-labs.com/");
 
@@ -13,8 +13,7 @@ async function getOffers() {
 
     let accountObjectsRequest:AccountObjectsRequest = {
         command: 'account_objects',
-        account: operational_wallet.classicAddress,
-        type: 'offer'
+        account: wallet.classicAddress
     }
 
     let accountObjectsResponse = await client.request(accountObjectsRequest);

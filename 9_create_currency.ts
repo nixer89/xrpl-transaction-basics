@@ -1,5 +1,5 @@
 import { Wallet, Client, Payment, xrpToDrops } from 'xrpl';
-import { ISSUER_WALLET_1_SEED, ISSUER_WALLET_2_CURRENCY, ISSUER_WALLET_2_SEED, OPERATIONAL_WALLET_1_SEED, OPERATIONAL_WALLET_2_SEED, USER_1_SEED } from './0_config'
+import { ISSUER_WALLET_1_CURRENCY, ISSUER_WALLET_1_SEED, ISSUER_WALLET_2_CURRENCY, ISSUER_WALLET_2_SEED, OPERATIONAL_WALLET_1_SEED, OPERATIONAL_WALLET_2_SEED, USER_1_SEED } from './0_config'
 
 async function createCurrency() {
 
@@ -18,9 +18,9 @@ async function createCurrency() {
         Account: issuer_wallet2.classicAddress,
         Destination: operational_wallet2.classicAddress,
         Amount: {
-            issuer: operational_wallet2.classicAddress,
+            issuer: issuer_wallet2.classicAddress,
             currency: ISSUER_WALLET_2_CURRENCY,
-            value: "100000"
+            value: "200000"
         }
     }
 
