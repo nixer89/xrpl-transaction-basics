@@ -1,5 +1,5 @@
 import { Wallet, Client, AccountObjectsRequest } from 'xrpl';
-import { ISSUER_WALLET_1_SEED, OPERATIONAL_WALLET_1_SEED, USER_1_SEED } from './0_config'
+import { ISSUER_WALLET_ETB_SEED, OPERATIONAL_WALLET_ETB_SEED, USER_1_SEED, XRPL_NODE } from './0_config'
 
 
 const RIPPLE_STATE_LOW_FREEZE:number = 4194304;
@@ -10,13 +10,13 @@ const RIPPLE_STATE_HIGH_FREEZE:number = 8388608;
 
 async function getAccountObjects() {
 
-    let issuer_wallet = Wallet.fromSeed(ISSUER_WALLET_1_SEED);
+    let issuer_wallet = Wallet.fromSeed(ISSUER_WALLET_ETB_SEED);
 
-    let operational_wallet = Wallet.fromSecret(OPERATIONAL_WALLET_1_SEED);
+    let operational_wallet = Wallet.fromSecret(OPERATIONAL_WALLET_ETB_SEED);
 
     let user_wallet = Wallet.fromSecret(USER_1_SEED);
 
-    let client = new Client("wss://testnet.xrpl-labs.com/");
+    let client = new Client(XRPL_NODE);
 
     await client.connect();
 
@@ -47,8 +47,8 @@ async function getAccountObjects() {
     console.log(accountObjectsResponse2.result.account_objects);
     **/
 
-    function isFlagEnabled(trustlineFlag:number, flagToCheck: number) {
-        return trustlineFlag > 0 && (trustlineFlag & flagToCheck) == flagToCheck;
+    function isFlagEnabled(flagPropertyValue:number, flagToCheck: number) {
+        return flagPropertyValue > 0 && (flagPropertyValue & flagToCheck) == flagToCheck;
     }
     
 }

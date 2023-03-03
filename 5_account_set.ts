@@ -1,13 +1,13 @@
 import { Wallet, Client, AccountSet, AccountSetAsfFlags, convertStringToHex, AccountSetTfFlags } from 'xrpl';
-import { ISSUER_WALLET_1_SEED, OPERATIONAL_WALLET_1_SEED } from './0_config'
+import { ISSUER_WALLET_ETB_SEED, OPERATIONAL_WALLET_ETB_SEED, XRPL_NODE } from './0_config'
 
 async function setDestinationTag() {
 
-    let wallet = Wallet.fromSecret(ISSUER_WALLET_1_SEED);
+    let wallet = Wallet.fromSecret(ISSUER_WALLET_ETB_SEED);
 
     console.log(wallet);
 
-    let client = new Client("wss://testnet.xrpl-labs.com/");
+    let client = new Client(XRPL_NODE);
 
     await client.connect();
 

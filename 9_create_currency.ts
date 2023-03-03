@@ -1,15 +1,15 @@
 import { Wallet, Client, Payment, xrpToDrops } from 'xrpl';
-import { ISSUER_WALLET_1_CURRENCY, ISSUER_WALLET_1_SEED, ISSUER_WALLET_2_CURRENCY, ISSUER_WALLET_2_SEED, OPERATIONAL_WALLET_1_SEED, OPERATIONAL_WALLET_2_SEED, USER_1_SEED } from './0_config'
+import { ISSUER_WALLET_ETB_CURRENCY, ISSUER_WALLET_ETB_SEED, ISSUER_WALLET_GBP_CURRENCY, ISSUER_WALLET_GBP_SEED, OPERATIONAL_WALLET_ETB_SEED, OPERATIONAL_WALLET_GBP_SEED, USER_1_SEED, XRPL_NODE } from './0_config'
 
 async function createCurrency() {
 
-    let issuer_wallet2 = Wallet.fromSeed(ISSUER_WALLET_2_SEED);
+    let issuer_wallet2 = Wallet.fromSeed(ISSUER_WALLET_GBP_SEED);
 
-    let operational_wallet2 = Wallet.fromSecret(OPERATIONAL_WALLET_2_SEED);
+    let operational_wallet2 = Wallet.fromSecret(OPERATIONAL_WALLET_GBP_SEED);
 
     let user_wallet = Wallet.fromSecret(USER_1_SEED)
 
-    let client = new Client("wss://s.altnet.rippletest.net/");
+    let client = new Client(XRPL_NODE);
 
     await client.connect();
 
@@ -19,7 +19,7 @@ async function createCurrency() {
         Destination: operational_wallet2.classicAddress,
         Amount: {
             issuer: issuer_wallet2.classicAddress,
-            currency: ISSUER_WALLET_2_CURRENCY,
+            currency: ISSUER_WALLET_GBP_CURRENCY,
             value: "200000"
         }
     }

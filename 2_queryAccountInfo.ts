@@ -1,14 +1,14 @@
 import { Wallet, Client, AccountInfoRequest } from 'xrpl';
-import { ISSUER_WALLET_1_SEED, OPERATIONAL_WALLET_1_SEED, USER_1_SEED } from './0_config'
+import { ISSUER_WALLET_ETB_SEED, OPERATIONAL_WALLET_ETB_SEED, USER_1_SEED, XRPL_NODE } from './0_config'
 
 const ROOT_FLAG_REQUIREDESTINATION_TAG:number = 131072;
 const ROOT_FLAG_DEFAULT_RIPPLE:number = 8388608;
 
 async function getAccountInfo() {
 
-    let wallet = Wallet.fromSeed(ISSUER_WALLET_1_SEED);
+    let wallet = Wallet.fromSeed(ISSUER_WALLET_ETB_SEED);
 
-    let wallet2 = Wallet.fromSecret(OPERATIONAL_WALLET_1_SEED);
+    let wallet2 = Wallet.fromSecret(OPERATIONAL_WALLET_ETB_SEED);
 
     let wallet3 = Wallet.fromSeed(USER_1_SEED);
 
@@ -16,7 +16,7 @@ async function getAccountInfo() {
     //console.log(wallet2);
     //console.log(wallet3);
 
-    let client = new Client("wss://testnet.xrpl-labs.com/");
+    let client = new Client(XRPL_NODE);
 
     await client.connect();
 

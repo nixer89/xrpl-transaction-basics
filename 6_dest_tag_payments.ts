@@ -1,16 +1,16 @@
 import { Wallet, Client, Payment, xrpToDrops } from 'xrpl';
-import { ISSUER_WALLET_1_SEED, OPERATIONAL_WALLET_1_SEED } from './0_config'
+import { ISSUER_WALLET_ETB_SEED, OPERATIONAL_WALLET_ETB_SEED, XRPL_NODE } from './0_config'
 
 async function fundViaPayment() {
 
-    let issuer_wallet = Wallet.fromSeed(ISSUER_WALLET_1_SEED);
+    let issuer_wallet = Wallet.fromSeed(ISSUER_WALLET_ETB_SEED);
 
-    let wallet_no_xrp = Wallet.fromSecret(OPERATIONAL_WALLET_1_SEED);
+    let wallet_no_xrp = Wallet.fromSecret(OPERATIONAL_WALLET_ETB_SEED);
 
     //console.log(wallet);
     //console.log(wallet2);
 
-    let client = new Client("wss://s.altnet.rippletest.net/");
+    let client = new Client(XRPL_NODE);
 
     await client.connect();
 

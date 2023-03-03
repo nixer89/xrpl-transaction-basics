@@ -1,9 +1,10 @@
 import { Client, SubscribeRequest} from 'xrpl';
+import { XRPL_NODE } from './0_config';
 
 async function subscribeAndListen() {
 
     let accountAddress:string = "rBJb8rfixLF8zTC7YfW5xc688LEuYqqQHY";
-    let client = new Client("wss://s.altnet.rippletest.net/");
+    let client = new Client(XRPL_NODE);
 
     await client.connect();
 

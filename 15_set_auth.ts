@@ -1,13 +1,13 @@
 import { Wallet, Client, AccountSet, AccountSetAsfFlags } from 'xrpl';
-import { ISSUER_WALLET_1_SEED } from './0_config'
+import { ISSUER_WALLET_ETB_SEED, XRPL_NODE } from './0_config'
 
 async function setDefaultRipple() {
 
-    let issuer_wallet = Wallet.fromSecret(ISSUER_WALLET_1_SEED);
+    let issuer_wallet = Wallet.fromSecret(ISSUER_WALLET_ETB_SEED);
 
     console.log(issuer_wallet);
 
-    let client = new Client("wss://testnet.xrpl-labs.com/");
+    let client = new Client(XRPL_NODE);
 
     await client.connect();
 

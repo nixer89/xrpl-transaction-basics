@@ -1,6 +1,6 @@
 import { Wallet, Client} from 'xrpl';
 import ECDSA from 'xrpl/dist/npm/ECDSA';
-import { ISSUER_WALLET_1_SEED } from './0_config'
+import { ISSUER_WALLET_ETB_SEED, XRPL_NODE } from './0_config'
 
 async function createWallet() {
 
@@ -10,8 +10,8 @@ async function createWallet() {
 }
 
 async function fundWallet() {
-    let wallet = Wallet.fromSeed(ISSUER_WALLET_1_SEED);
-    let client = new Client("wss://s.altnet.rippletest.net/");
+    let wallet = Wallet.fromSeed(ISSUER_WALLET_ETB_SEED);
+    let client = new Client(XRPL_NODE);
 
     await client.connect();
 
