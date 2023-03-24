@@ -14,8 +14,7 @@ async function setDestinationTag() {
     let accountSetTransaction:AccountSet = {
         TransactionType: "AccountSet",
         Account: wallet.classicAddress,
-        SetFlag: AccountSetAsfFlags.asfDefaultRipple,
-        Flags: AccountSetTfFlags.tfRequireDestTag
+        SetFlag: AccountSetAsfFlags.asfDepositAuth
     }
 
     let accountSetResponse = await client.submit(accountSetTransaction, {autofill: true, wallet: wallet});

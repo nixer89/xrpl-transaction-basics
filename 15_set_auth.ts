@@ -21,6 +21,8 @@ async function setDefaultRipple() {
 
     console.log(accountSetResponse);
 
+    process.exit(0);
+
 }
 
 setDefaultRipple();

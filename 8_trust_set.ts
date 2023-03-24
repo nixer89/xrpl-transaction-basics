@@ -3,8 +3,8 @@ import { ISSUER_WALLET_ETB_CURRENCY, ISSUER_WALLET_ETB_SEED, ISSUER_WALLET_GBP_C
 
 async function setTrustLine() {
 
-    let issuerWallet2 = Wallet.fromSecret(ISSUER_WALLET_ETB_SEED);
-    let operationalWallet2 = Wallet.fromSecret(OPERATIONAL_WALLET_GBP_SEED);
+    let issuerWallet = Wallet.fromSecret(ISSUER_WALLET_GBP_SEED);
+    let operationalWallet2 = Wallet.fromSecret(OPERATIONAL_WALLET_ETB_SEED);
     let userWallet = Wallet.fromSecret(USER_1_SEED);
 
     //console.log(wallet);
@@ -15,18 +15,20 @@ async function setTrustLine() {
 
     let trustSetTransaction:TrustSet = {
         TransactionType: "TrustSet",
-        Account: userWallet.classicAddress,
+        Account: operationalWallet2.classicAddress,
         Flags: TrustSetFlags.tfSetNoRipple,
         LimitAmount: {
-            issuer: issuerWallet2.classicAddress,
-            currency: ISSUER_WALLET_ETB_CURRENCY,
+            issuer: issuerWallet.classicAddress,
+            currency: ISSUER_WALLET_GBP_CURRENCY,
             value: "1000000"
         }
     }
 
-    let trustSetResponse = await client.submit(trustSetTransaction, {autofill: true, wallet: userWallet});
+    let trustSetResponse = await client.submit(trustSetTransaction, {autofill: true, wallet: operationalWallet2});
 
     console.log(trustSetResponse);
+
+    process.exit(0);
 
 }
 

@@ -20,7 +20,7 @@ async function createCurrency() {
         Amount: {
             issuer: issuer_wallet2.classicAddress,
             currency: ISSUER_WALLET_GBP_CURRENCY,
-            value: "200000"
+            value: "1000000"
         }
     }
 

@@ -18,7 +18,7 @@ async function setTrustLine() {
         Account: issuerWallet.classicAddress,
         Flags: TrustSetFlags.tfSetfAuth,
         LimitAmount: {
-            issuer: user_wallet.classicAddress,
+            issuer: operationalWallet.classicAddress,
             currency: ISSUER_WALLET_ETB_CURRENCY,
             value: "0"
         }

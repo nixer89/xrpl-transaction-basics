@@ -15,16 +15,16 @@ async function fundViaPayment() {
     let sellFromOperationalWallet:OfferCreate = {
         TransactionType: "OfferCreate",
         Account: operational_wallet_1.classicAddress,
-        Flags: OfferCreateFlags.tfFillOrKill,
+        Flags: OfferCreateFlags.tfSell,
         TakerGets: {
             issuer: issuer_wallet_1.classicAddress,
             currency: ISSUER_WALLET_ETB_CURRENCY,
-            value: "10000"
+            value: "100000"
         },
         TakerPays: {
             issuer: issuer_wallet_2.classicAddress,
             currency: ISSUER_WALLET_GBP_CURRENCY,
-            value: "1000"
+            value: "10000"
         }
     }
 
